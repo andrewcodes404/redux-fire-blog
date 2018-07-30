@@ -5,23 +5,22 @@ import { Link } from 'react-router-dom'
 
 class PostsShow extends React.Component {
   componentDidMount() {
-    console.log("component is mounted 👇");
-    console.log("this.props.posts : ", this.props.posts);
+    console.log('`componentDidMount');
     
     if (!this.props.posts) {
-      console.log("no this.props.posts");
+      console.log('there is no this.props.posts --> send to fetchPOST()');
       
       const { id } = this.props.match.params
       this.props.fetchPost(id);
     }
   }
 
-  // OnDeleteClick = () => {
-  //   const { id } = this.props.match.params
-  //   this.props.deletePost(id, () => {
-  //     this.props.history.push('/'); 
-  //   });
-  // }
+  OnDeleteClick = () => {
+    const { id } = this.props.match.params
+    this.props.deletePost(id, () => {
+      this.props.history.push('/'); 
+    });
+  }
 
   render() {
     const { post } = this.props
@@ -30,7 +29,6 @@ class PostsShow extends React.Component {
     return (
       <div>
         <Link to="/">Back to index </Link>
-
         <button onClick={this.OnDeleteClick}>Delete Post</button>
         <h3>{post.title}</h3>
         <h6>Cats: {post.categories}</h6>
@@ -40,21 +38,10 @@ class PostsShow extends React.Component {
   }
 }
 
-// function mapStateToProps(state) {
-//     return {
-//         posts: state.posts
-//     }
-// }
 
-// Destructured
-
-function mapStateToProps({ posts }, ownProps) {
-  console.log("from mapStateTo Props ownProps : ", ownProps);
-  console.log("from mapStateTo posts : ", posts);
-
-  // console.log("state : ", state);
-
-  return { post: posts[ownProps.match.params.id] }
+// Destructured call to posts.state 
+function mapStateToProps({posts}, ownProps) {
+  return { post: posts[ownProps.match.params.id]}
 }
 
 
