@@ -433,8 +433,8 @@ body {
   font-family: "Raleway", sans-serif; }
 
 h1, h2, h3, h4, h5, h6 {
-  line-height: 1.1;
-  margin-bottom: 0.75rem; }
+  line-height: 1;
+  margin-bottom: 1rem; }
 
 h1 {
   font-size: 44px;
@@ -445,8 +445,9 @@ h2 {
   font-size: 2.125rem; }
 
 h3 {
-  font-size: 26px;
-  font-size: 1.625rem; }
+  font-size: 22px;
+  font-size: 1.375rem;
+  text-decoration: underline; }
 
 h4 {
   font-size: 20px;
@@ -486,11 +487,40 @@ a:active {
   flex-direction: column;
   min-height: 100vh; }
 
-.hello {
-  background-color: orange;
-  color: white;
-  padding: .5rem;
-  margin-top: 1rem; }
+header {
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #c0fffb;
+  text-align: center; }
+
+.fp-nav {
+  line-height: 1.4;
+  margin-bottom: 2rem;
+  border-bottom: 1px dotted grey;
+  display: flex;
+  justify-content: space-between; }
+  .fp-nav .pg-title {
+    font-size: 34px;
+    font-size: 2.125rem; }
+  .fp-nav .add-new {
+    font-size: 24px;
+    font-size: 1.5rem;
+    padding: .2rem;
+    border-radius: 20px; }
+
+.blog-cont {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+
+.blog {
+  margin-bottom: 2rem; }
+  @media (min-width: 576px) {
+    .blog {
+      width: 48%; } }
+  @media (min-width: 992px) {
+    .blog {
+      width: 31%; } }
 
 .flex-row {
   display: flex; }

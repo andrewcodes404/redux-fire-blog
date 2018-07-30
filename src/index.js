@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-// import promise from 'redux-promise' --- remove from package.json
 import thunk from 'redux-thunk';
 
 import registerServiceWorker from './registerServiceWorker';
 
+import './style/style.css';
 import reducers from './reducers'
 import PostIndex from './components/PostsIndex'
 import PostsNew from "./components/PostsNew"
@@ -19,7 +19,10 @@ const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const App = (
     <Provider store={createStoreWithMiddleware(reducers)}>
         <BrowserRouter>
-            <div>
+            <div className="container">
+                <header>
+                    <h1>redux-firebase-blog</h1>
+                </header>
                 <Switch>
                     <Route path="/posts/new" component={PostsNew} />
                     <Route path="/posts/:id" component={PostsShow} />

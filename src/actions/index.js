@@ -8,8 +8,6 @@ export const CREATE_POST = 'CREATE_POST'
 export const FETCH_POST = 'FETCH_POST'
 export const DELETE_POST = 'DELETE_POST'
 
-
-
 var config = {
     apiKey: "AIzaSyCkYhf8WzA2VlXo0IhmFQbDnVUuf8FR5Ww",
     authDomain: "redux-fire-blog-6ee63.firebaseapp.com",
@@ -35,17 +33,16 @@ export function fetchPosts() {
 }
 
 
-export function createPost (values, callback){
+export function createPost(values, callback) {
     const userId = uuidv1()
     return dispatch => {
         firebase.database().ref(userId).set(values)
             .then(() => callback())
     }
-    
+
 }
 
 export function fetchPost(id) {
-    // console.log("FROM ACTION id : ", id);
     return dispatch => {
         database.ref(id).once('value')
             .then(snapshot => {
@@ -61,8 +58,8 @@ export function fetchPost(id) {
 export function deletePost(id, callback) {
     return dispatch => {
         database.ref(id).remove()
-        // no need for snapshot as this callback redirects 
-        // to PostsIndex which will gather the sate by itself
-            .then(()=>callback())
+            // no need for snapshot as this callback redirects 
+            // to PostsIndex which will gather the sate by itself
+            .then(() => callback())
     }
 }

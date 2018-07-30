@@ -25,8 +25,15 @@ class PostsShow extends React.Component {
     if (!post) { return <h1>LOADING</h1>; }
     return (
       <div>
-        <Link to="/">Back to index </Link>
-        <button onClick={this.OnDeleteClick}>Delete Post</button>
+        <div className="fp-nav">
+        <span className="pg-title"><Link to="/">Back to index </Link></span>
+         
+          <button onClick={this.OnDeleteClick}>Delete Post</button>
+        </div>
+
+
+       
+       
         <h3>{post.title}</h3>
         <h6>Cats: {post.categories}</h6>
         <p>{post.content}</p>

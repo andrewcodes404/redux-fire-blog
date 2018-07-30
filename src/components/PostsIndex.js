@@ -27,13 +27,15 @@ class PostsIndex extends React.Component {
             const content = posts[prop].content
             // push the result in top the empty array
             results.push(
-                <div key={prop}>
+                <div key={prop} className="blog">
                     <Link to={`/posts/${prop}`}>
                         <h3>{title}</h3>
-                    </Link>  
-                    
-                    <p>{cats}</p>
-                    <p>{content}</p>
+                    </Link>
+
+
+                    <p className="">{content}</p>
+                    <br />
+                    <p><span className="bold">category: </span>{cats}</p>
                 </div>
             )
         }
@@ -46,11 +48,14 @@ class PostsIndex extends React.Component {
     render() {
         console.log("this.props.posts : ", this.props.posts);
         return (
-            <div className="hello">
-                <h1>Blog Posts</h1>
-                <Link to="/posts/new">Add Post</Link>                
+            <div className="front-page">
+                <div className="fp-nav">
+                    <span className="pg-title">Blog Posts </span><span className="add-new"><Link to="/posts/new"><span role="img" aria-label="emoji">👉</span>  Add Post</Link> </span>
+                </div>
+                <div className="blog-cont">
 
-                {this.renderPosts()}
+                    {this.renderPosts()}
+                </div>
             </div>
         );
     }
