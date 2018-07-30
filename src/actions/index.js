@@ -1,5 +1,3 @@
-// import axios from "axios";
-/// delete this 👆 when finnished??
 import firebase from "firebase/app";
 import 'firebase/database'
 
@@ -11,9 +9,6 @@ export const FETCH_POST = 'FETCH_POST'
 export const DELETE_POST = 'DELETE_POST'
 
 
-// http://reduxblog.herokuapp.com/api/posts?key=andrewcodes404
-// const ROOT_URL = 'http://reduxblog.herokuapp.com/api'
-// const API_KEY = '?key=andrewcodes404'
 
 var config = {
     apiKey: "AIzaSyCkYhf8WzA2VlXo0IhmFQbDnVUuf8FR5Ww",
@@ -40,50 +35,23 @@ export function fetchPosts() {
 }
 
 
-// function writeUserData(userId, name, email, imageUrl) {
-//     firebase.database().ref('users/' + userId).set({
-//         username: name,
-//         email: email,
-//         profile_picture: imageUrl
-//     });
-// }
-
 export function createPost (values, callback){
-    
     const userId = uuidv1()
     return dispatch => {
         firebase.database().ref(userId).set(values)
             .then(() => callback())
-            // .then(snapshot => {
-            //     dispatch({
-            //         type: FETCH_POSTS,
-            //         payload: snapshot.val()
-            //     })
-            // })
     }
     
 }
 
-
-
-// 🤔 🤔 🤔 🤔 🤔 🤔 🤔 🤔 🤔 🤔 
-//  Okay I think here we are retriving just one item from the db
-// in PostsShow.js   you use the id against all the items???
-// 👇 👇 👇 👇 👇 👇 👇 👇 ANYWAY THIS IS WHERE YOU GOT TO 👇 👇 👇 👇 👇 👇
-// 👇 👇 👇 👇 👇 👇 👇 👇 ANYWAY THIS IS WHERE YOU GOT TO 👇 👇 👇 👇 👇 👇
-// 👇 👇 👇 👇 👇 👇 👇 👇 ANYWAY THIS IS WHERE YOU GOT TO 👇 👇 👇 👇 👇 👇
-// 👇 👇 👇 👇 👇 👇 👇 👇 ANYWAY THIS IS WHERE YOU GOT TO 👇 👇 👇 👇 👇 👇
-// 👇 👇 👇 👇 👇 👇 👇 👇 ANYWAY THIS IS WHERE YOU GOT TO 👇 👇 👇 👇 👇 👇
-
 export function fetchPost(id) {
-    console.log("FROM ACTION id : ", id);
-    // const request = axios.get(`${ROOT_URL}/posts/${id}${API_KEY}`)
+    // console.log("FROM ACTION id : ", id);
     return dispatch => {
         database.ref(id).once('value')
             .then(snapshot => {
                 console.log("snapshot.val() : ", snapshot.val());
                 dispatch({
-                    type: 'FETCH_POSTS',
+                    type: 'FETCH_POST',
                     payload: snapshot.val()
                 })
             })
@@ -91,30 +59,10 @@ export function fetchPost(id) {
 }
 
 export function deletePost(id, callback) {
-    //no need for 'const request' as we are not sending in payload
-    //  axios.delete(`${ROOT_URL}/posts/${id}${API_KEY}`)
-    //     .then(() => callback());
-    return {
-        type: DELETE_POST,
-        // payload: id
-        payload: id
+    return dispatch => {
+        database.ref(id).remove()
+        // no need for snapshot as this callback redirects 
+        // to PostsIndex which will gather the sate by itself
+            .then(()=>callback())
     }
 }
-
-// export function fetchPost(id) {
-//     const request = axios.get(`${ROOT_URL}/posts/${id}${API_KEY}`)
-//     return {
-//         type: FETCH_POST,
-//         payload: request
-//     }
-// }
-
-// export function deletePost(id, callback) {
-//     //no need for 'const request' as we are not sending in payload
-//     axios.delete(`${ROOT_URL}/posts/${id}${API_KEY}`)
-//         .then(() => callback());
-//     return {
-//         type: DELETE_POST,
-//         payload: id
-//     }
-// }

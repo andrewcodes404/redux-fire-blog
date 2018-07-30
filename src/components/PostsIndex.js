@@ -1,5 +1,5 @@
 // import _ from 'lodash'
-/// delete this 👆 when finnished
+/// delete this 👆 when finished
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions'
@@ -16,7 +16,7 @@ class PostsIndex extends React.Component {
         // ES6 destructing
         const { posts } = this.props
 
-        ///create empty aray for result
+        ///create empty array for result
         const results = []
 
         //run through our object to find the prop UIDs
@@ -25,7 +25,7 @@ class PostsIndex extends React.Component {
             const title = posts[prop].title
             const cats = posts[prop].categories
             const content = posts[prop].content
-            // push the result in top the empty eaary
+            // push the result in top the empty array
             results.push(
                 <div key={prop}>
                     <Link to={`/posts/${prop}`}>
@@ -38,7 +38,7 @@ class PostsIndex extends React.Component {
             )
         }
         // console.log("results", results);
-        // 🤔 don't know why but this return will render out all the resluts??🤔
+        // 🤔 don't know why but this return will render out all the results??🤔
         return (
             results
         )
