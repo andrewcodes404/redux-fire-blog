@@ -5,11 +5,8 @@ import { Link } from 'react-router-dom'
 
 class PostsShow extends React.Component {
   componentDidMount() {
-    console.log('`componentDidMount');
-    
+
     if (!this.props.posts) {
-      console.log('there is no this.props.posts --> send to fetchPOST()');
-      
       const { id } = this.props.match.params
       this.props.fetchPost(id);
     }
@@ -18,7 +15,7 @@ class PostsShow extends React.Component {
   OnDeleteClick = () => {
     const { id } = this.props.match.params
     this.props.deletePost(id, () => {
-      this.props.history.push('/'); 
+      this.props.history.push('/');
     });
   }
 
@@ -38,11 +35,9 @@ class PostsShow extends React.Component {
   }
 }
 
-
 // Destructured call to posts.state 
-function mapStateToProps({posts}, ownProps) {
-  return { post: posts[ownProps.match.params.id]}
+function mapStateToProps({ posts }, ownProps) {
+  return { post: posts[ownProps.match.params.id] }
 }
-
 
 export default connect(mapStateToProps, { fetchPost, deletePost })(PostsShow)
